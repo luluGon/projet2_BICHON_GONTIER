@@ -57,7 +57,7 @@ double q0(double x){
   }
 
 
-double k(double x, double t){
+double kbis(double x, double t){
   double somme;
   double scal;
   double res;
@@ -66,7 +66,7 @@ double k(double x, double t){
   somme=0.0;
   res=1.0/(H*L);
   
-  for (i=1; i<=n; i++)
+  for (i=1; i<=N1; i++)
   {
     scal=i*pi/L;
     
@@ -100,7 +100,7 @@ double h(double x){
   for (i=1;i<=N1;i++){
     
     scal =pi*i/L;
-    int2=integrale_GL(f0_bis,0.0,L,i);
+    int2=integrale_GL(f0,0.0,L,i);
     
     int2=(f0(x))*cosh(scal*H)*int2;
     
