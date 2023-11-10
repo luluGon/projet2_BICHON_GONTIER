@@ -7,14 +7,13 @@
 
 int main(){
   
-  double alpha;
-  int n=1;
-  double x=0.5;
-  
+  double alpha=5;
+  int n=100;
+  double x=0.2;
+  double t=Uex(x,1);
   double y=adomain_v2(h,x,alpha,n);
-  
-  printf("%lf\n",y);
-  
+  printf("test =%lf\n",y);
+  printf("exact =%lf\n",t);
   return 0;
   }
   

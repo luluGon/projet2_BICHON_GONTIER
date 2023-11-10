@@ -13,7 +13,10 @@ double Uex(double x, double y){
       res=cosh(scal*y)*cos(scal*x);
       break;
     case 1:
-      res=cosh(scal*y)*cos(scal*x)*x/k;
+      if (k!=  0){
+      res=cosh(scal*y)*cos(scal*x)*x/k;}
+      else {
+      printf("k doit être différent de 0 quand num =1");}
       break;
     default: printf(" Pas d'autres fonctions\n");
     }
