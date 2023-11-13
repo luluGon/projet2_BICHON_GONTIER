@@ -89,7 +89,7 @@ double adomain_v2(double (*f)(double), double x,double alpha, int n){
   
   
   //On initialise pour la première itération
-  somme=-f(x)/alpha;
+  somme=f(x)/alpha;
   
   //On crée un tableau pour les Un pris en les points de Gauss Legendre qui vont nous servir pour calculer les Un+1
   double u[N];
@@ -113,7 +113,7 @@ double adomain_v2(double (*f)(double), double x,double alpha, int n){
         intej=GL2(ubis,0.0,L,m1);
         
         
-        somme2=somme2+intej*m*cos(scal*x)/sinh(scal*H);
+        somme2=somme2+intej*m1*cos(scal*x)/sinh(scal*H);
         somme2=somme2*2.0*pi/(L*L);
         }
       
@@ -129,7 +129,7 @@ double adomain_v2(double (*f)(double), double x,double alpha, int n){
     
     //Ensuite on le somme à la somme des Un(x) 
     somme=somme+res2;
-    printf("somme=%lf\n",somme);
+    
     
     
     for (int K=0;K<N;K++){

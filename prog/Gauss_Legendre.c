@@ -47,7 +47,6 @@ double integrale_GL( double (*f)(double), double a, double b,int m){
     for (i=0;i<N;i++){
     
       Xbis[i]=b_moins_a*X[i] + b_plus_a;
-      printf("Xbis[%d]: %lf, f(Xbis[%d]): %lf\n", i, Xbis[i], i, (*f)(Xbis[i]));
       res=res + w[i]*((*f)(Xbis[i]));
       }
       }

@@ -3,17 +3,15 @@
 #include "constante.h"
 #include "Gauss_Legendre.h"
 #include "fonctions.h"
-
+#include "err.h"
+#include "plot.h"
 
 int main(){
   
-  double alpha=5;
   int n=100;
-  double x=0.2;
-  double t=Uex(x,1);
-  double y=adomain_v2(h,x,alpha,n);
-  printf("test =%lf\n",y);
-  printf("exact =%lf\n",t);
+  double y;
+  y=plot_err_alpha_adov1(0.1,10.0,0.1,n);
+  printf("alpha_min = %lf\n", y);
   return 0;
   }
   
