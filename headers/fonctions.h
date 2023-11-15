@@ -19,6 +19,12 @@
     //fonction intermédiaire qui prend entrée deux double x et t et renvoie k(x,t)
     double kbis(double x, double t);
 
+    //fonction de k qui ne dépend que de x
+    double alpha_i(double x,int i)
+    
+    //fonction de k qui ne dépend que de t
+    double beta_i(double t,int i)
+
     //fonction prenant en entrée un double x et renvoie h(x)
     double h(double x);
 
