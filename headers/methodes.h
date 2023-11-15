@@ -7,7 +7,11 @@
     #include "constante.h"
     #include "fonctions.h"
     #include "Gauss_Legendre.h"
+    #include "InversionMatrice.h"
+    #include "ProduitMatrice.h"
     #include <math.h>
+    #include <lapacke.h>
+
     
     extern double X[10];
     extern double w[10];
@@ -18,5 +22,9 @@
     
     double adomain_v2(double (*f)(double), double x,double alpha, int n);
 
+
+    //Cette fonction prend comme argument d'entrée, h une fonction de double, et x un double
+    //Elle renvoie la valeur de f_3(x) approchée par la méthode des noyaux séparables
+    double ker_sep(double (*h)(double), double x);
 #endif
 
