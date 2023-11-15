@@ -254,3 +254,58 @@ double adomain_v3( double x,double alpha, int n){
   }
     return somme;  
     }
+
+
+double ker_sep(double (*h)(double), double x,double alpha){   
+  double c[N1+1];
+  double A[N1+1,N1+1];
+  double B[N1+1];
+  double I[N1+1,N1+1];
+  double mat_inv[N1+1,N1+1];
+  double lambda=-1./alpha;
+  int i;
+  //On construit f
+  double f(x){
+    return (1./alpha)*h(x);     
+  }
+  //On initialise A et B
+  for (i=1;i<=N1+1;i++){
+    for (m=1;m<=N1+1;m++){
+      //On définit la fonction à placer dans l'intégrale pour calculer A
+      double f_A(double x){           
+        return beta_i(x,m)*alpha_i(x,i);
+      }
+      A[m-1,i-1]=integrale_GL(f_A,0.,L,0);      
+        //On choisit m=0 car cela implique une multiplication de f_A par cos(0)=1
+      //On initialise ensuite I
+      if (m==i){
+        I[i-1,i-1]=1.;
+      else
+        I[m-1,i-1]=0.;
+      }
+    }
+    //On définit la fonction à placer dans l'intégrale pour calculer B
+    double f_B(double x){
+      return beta_i(x,i)*f(x);
+    }
+    B[i-1]=integrale_GL(f_B,0.,L,0);   
+    //On choisit m=0 car cela implique une multiplication de f_B par cos(0)=1
+  }
+  //On fait intervenir notre programme d'inversion de matrice
+  mat_inv=inv_mat(I-lambda*A);
+  //On fait intervenir notre programme de produit matriciel
+  c=prod_mat(mat_inv,B);
+  //On définit la fonction u, solution du problème, à l'aide de ce que l'on a calculé précédemment
+  double u(double x){
+    double som=0.;
+    int m;
+    for (m=1;m<=N1+1;m++){
+      som+=c[m-1]*alpha_i(x,m);
+    }
+    som=f(x)+lambda*som;
+    return som;
+  }
+  return u(x);
+}
+
+printf("u(1/2) = %lf\n", ker_sep(h,0.5,alpha));  
