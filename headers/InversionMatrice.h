@@ -10,7 +10,7 @@
 
     void transpose(float [][N1+1], float [][N1+1], float);
 
-    double[N1+1] inv_mat(double a[N1+1,N1+1])
+    double[N1+1] inv_mat(double a[N1+1,N1+1]);
     
 
 
