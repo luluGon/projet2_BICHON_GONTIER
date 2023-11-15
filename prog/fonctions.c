@@ -82,6 +82,26 @@ double kbis(double x, double t){
   return res;
   }
 
+double alpha_i(double x,int i){
+  double alpha;
+  if (i==N1+1){           //On ajoute une itérations car il faut penser à inclure le terme 1/HL
+    alpha=1./(H*L);
+  else
+    alpha=2.*pi*cos(i*pi*x*(1./L))*(1./(L*L*sinh(i*pi*H*(1./L))));
+  }
+  return alpha;
+}
+
+double beta_i(double t, int i){
+  double beta;
+  if (i==N1+1){           //On ajoute une itérations car il faut penser à inclure le terme 1/HL
+    beta=1.;
+  else
+    beta=cos(i*pi*t*(1/L));
+  }
+  return beta;
+}
+
 double h(double x){
   /*On décompose le calcul de h en sous éléments, int1 la première intégrale, int2 la seconde, somme la somme*/
   /*De plus on pose res pour le résultat global, et scal pour les scalaires récurrent des boucles */
