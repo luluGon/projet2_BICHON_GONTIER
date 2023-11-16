@@ -2,13 +2,8 @@
 
     #include<math.h>
     #include "InversionMatrice.h"
-
-    float determinant(float [][N1+1], float);
-
-    void cofactor(float [][N1+1], float);
-
-    void transpose(float [][N1+1], float [][N1+1], float);
-
+    
+    
     double[N1+1] inv_mat(double a[N1+1,N1+1])
 
     {
@@ -33,7 +28,7 @@
 
      
 
-    /*For calculating Determinant of the Matrix */
+    //Calcul le determinant de la matrice a
 
     float determinant(float a[N1+1][N1+1], float k)
 
@@ -116,7 +111,7 @@
     }
 
      
-
+    
     void cofactor(float num[N1+1][N1+1], float f)
 
     {
@@ -181,7 +176,7 @@
 
     }
 
-    /*Finding transpose of matrix*/ 
+    //Trouve la transposé de la matrice
 
     void transpose(float num[N1+1][N1+1], float fac[N1+1][N1+1], float r)
 

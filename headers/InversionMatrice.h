@@ -2,7 +2,7 @@
 #ifndef fonctions
 #define fonctions
 
-    #include constante.h
+    #include "constante.h"
     
     float determinant(float [][N1+1], float);
 

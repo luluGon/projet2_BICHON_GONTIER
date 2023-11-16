@@ -85,8 +85,8 @@ double kbis(double x, double t){
 double alpha_i(double x,int i){
   double alpha;
   if (i==N1+1){           //On ajoute une itérations car il faut penser à inclure le terme 1/HL
-    alpha=1./(H*L);
-  else
+    alpha=1./(H*L);}
+  else{
     alpha=2.*pi*cos(i*pi*x*(1./L))*(1./(L*L*sinh(i*pi*H*(1./L))));
   }
   return alpha;
@@ -95,8 +95,8 @@ double alpha_i(double x,int i){
 double beta_i(double t, int i){
   double beta;
   if (i==N1+1){           //On ajoute une itérations car il faut penser à inclure le terme 1/HL
-    beta=1.;
-  else
+    beta=1.;}
+  else{
     beta=cos(i*pi*t*(1/L));
   }
   return beta;

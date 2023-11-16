@@ -10,7 +10,6 @@
     #include "InversionMatrice.h"
     #include "ProduitMatrice.h"
     #include <math.h>
-    #include <lapacke.h>
 
     
     extern double X[10];
