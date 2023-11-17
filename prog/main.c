@@ -8,10 +8,12 @@
 
 int main(){
   
-  int n=100;
+  int n=4;
   double y;
-  y=plot_err_alpha_adov1(0.1,10.0,0.1,n);
-  printf("alpha_min = %lf\n", y);
+  double t;
+  t=Uex(0.2, H);
+  y=adomain_v1(h,0.2,10.0,n);
+  printf("%lf\n%lf\n",y,t);
   return 0;
   }
   

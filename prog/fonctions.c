@@ -60,7 +60,7 @@ double q0(double x){
   }
 
 
-double kbis(double x, double t){
+/*double kbis(double x, double t){
   double somme;
   double scal;
   double res;
@@ -80,7 +80,7 @@ double kbis(double x, double t){
   res=res +somme;
   
   return res;
-  }
+  }*/
 
 double h(double x){
   /*On décompose le calcul de h en sous éléments, int1 la première intégrale, int2 la seconde, somme la somme*/
