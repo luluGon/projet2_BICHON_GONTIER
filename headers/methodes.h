@@ -16,7 +16,9 @@
     //Elle renvoie la valeur de f_3(x) approchée par la méthode de adomain
     /*double adomain(double (*f)(double), double x);*/
     
-    double adomain_v1(double (*f)(double), double x,double alpha, int n);
-
+    double adomain_v1( double x,double alpha, int n);
+    
+    
+    double approximation_succesive(double (*fonction_initial)(double), double x,double alpha, int n);
 #endif
 

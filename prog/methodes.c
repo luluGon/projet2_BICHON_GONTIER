@@ -74,22 +74,26 @@
     }
 */
 
-double adomain_v1(double (*f)(double), double x,double alpha, int n){
+double adomain_v1( double x,double alpha, int n){
   
-  //On crée nos variables
-  double somme;
-  double inte;
-  int i;
+  //On définie nos variables
+  
+  //somme_Un la variable qui représentera la somme des Un
+  double somme_Un;
+  //scal définie pour m*pi/L qui est très utilisé
   double scal;
-  double res2;
+  //res sera la variable permettant de calculer 
   double res;
-  double intej;
-  int m;
-  double somme2=0.0;
+  //inte_Uncos sera la variable pour calculer les integrales de Un(t)*cos(m*pi*t/L)
+  double inte_Uncos;
+  //somme_K donnera 
+  double somme_K=0.0;
+  
+  int i,m,K,l;
   
   
   //On initialise pour la première itération
-  somme=f(x)/alpha;
+  somme_Un=h(x)/alpha;
   
   //On crée un tableau pour les Un pris en les points de Gauss Legendre qui vont nous servir pour calculer les Un+1
   double u[N];
@@ -97,77 +101,178 @@ double adomain_v1(double (*f)(double), double x,double alpha, int n){
   double ubis[N];
   
   //On initie les tableaux
-  for (int j=0;j<N;j++){
+  for (i=0;i<N;i++){
   
     //on oublie pas le changement de variable
-    u[j]=(X[j]+1)*L/2.0;
-    ubis[j]=(X[j]+1)*L/2.0;
+    u[i]=h((X[i]+1)*L/2.0);
+    ubis[i]=h((X[i]+1)*L/2.0);
     }
   
-  //On va maintenant boucler sur le n dans Un
+  //On va maintenant boucler sur le n pour calculer les Un Un
   for (i=1;i<=n;i++)
   {
-    res2=0.0;
-    for (int m1=1;m1<=N1;m1++){
-        scal=m1*pi/L;
-        intej=GL2(ubis,0.0,L,m1);
+    res=0.0;
+    
+    //On va venir calculer la valeur de Ui+1(x) et l'ajouter à la somme
+    for (m=1;m<=N1;m++){
+        scal=m*pi/L;
+        inte_Uncos=GL2(ubis,0.0,L,m);
         
         
-        somme2=somme2+intej*m1*cos(scal*x)/sinh(scal*H);
-        somme2=somme2*2.0*pi/(L*L);
+        somme_K=somme_K+inte_Uncos*m*cos(scal*x)/sinh(scal*H);
+        
         }
+      somme_K=somme_K*2.0*pi/(L*L);
       
       //On calcule l'intégrale de Un(x)*(terme de gauche de k(x,t) ) de 0 à L
       res=GL2(ubis,0.0,L,0);
       res=res/(H*L);
       
       //On somme le tout et on divise par alpha
-      res= res+somme2;
-      res2=-res/alpha;
+      res= res+somme_K;
+      res=-res/alpha;
       
       
     
     //Ensuite on le somme à la somme des Un(x) 
-    somme=somme+res2;
+    somme_Un=somme_Un+res;
     
     
-    
-    for (int K=0;K<N;K++){
+    //On calcule les points pour utiliser Gauss Legendre à la prochaine itération
+    for (K=0;K<N;K++){
       //On va décomposer l'intégrale de Un(x)*k(x,t) en deux morceaux
       
       res=0.0;
-      somme2=0.0;
+      somme_K=0.0;
       //On calcule l'intégrale de Un(x)*(le terme de droite de k(x,t) ) de 0 à L.
-      for (m=1;m<=N1;m++){
+      for (int m=1;m<=N1;m++){
         scal=m*pi/L;
-        intej=GL2(ubis,0.0,L,m);
+        inte_Uncos=GL2(ubis,0.0,L,m);
         
         
-        somme2=somme2+intej*m*cos(scal*((1+X[K])*L/2.0)/sinh(scal*H));
-        somme2=somme2*2.0*pi/(L*L);
+        somme_K=somme_K+inte_Uncos*m*cos(scal*((1.0+X[K])*L/2.0)/sinh(scal*H));
+        
         }
-      
+      somme_K=somme_K*2.0*pi/(L*L);
       //On calcule l'intégrale de Un(x)*(terme de gauche de k(x,t) ) de 0 à L
       res=GL2(ubis,0.0,L,0);
       res=res/(H*L);
       
       //On somme le tout et on divise par alpha
-      res= res+somme2;
+      res= res+somme_K;
       u[K]=-res/alpha;
       }
       
     
     //on rédéfinie notre liste intermédiare ubis
-    for(int l=0;l<N;l++){
+    for(l=0;l<N;l++){
       ubis[l]=u[l];
       }
   }
-    return somme;  
+    return somme_Un;  
     }
          
 /*double adomain_v2(double *f(double),double x, double alpha, int n){
   
   for (int i; i<n;i++){*/
   
+  
+double approximation_succesive(double (*fonction_initial)(double), double x,double alpha, int n){
+  
+  //On définie nos variables
+  
+  //somme_Un la variable qui représentera la somme des Un
+  double somme_Un;
+  //scal définie pour m*pi/L qui est très utilisé
+  double scal;
+  //res sera la variable permettant de calculer 
+  double res;
+  //inte_Uncos sera la variable pour calculer les integrales de Un(t)*cos(m*pi*t/L)
+  double inte_Uncos;
+  //somme_K donnera 
+  double somme_K=0.0;
+  
+  int i,m,K,l;
+  
+  
+  //On initialise pour la première itération
+  somme_Un=h(x)/alpha;
+  
+  //On crée un tableau pour les Un pris en les points de Gauss Legendre qui vont nous servir pour calculer les Un+1
+  double u[N];
+  //On crée aussi un tableau tampon qui sera égal à celui de Un, que l'on utilisera pour les calcul
+  double ubis[N];
+  
+  //On initie les tableaux
+  for (i=0;i<N;i++){
+  
+    //on oublie pas le changement de variable
+    u[i]=fonction_initial((X[i]+1)*L/2.0);
+    ubis[i]=fonction_initial((X[i]+1)*L/2.0);
+    }
+  
+  //On va maintenant boucler sur le n pour calculer les Un Un
+  for (i=1;i<=n;i++)
+  {
+    res=0.0;
+    
+    //On va venir calculer la valeur de Ui+1(x) et l'ajouter à la somme
+    for (m=1;m<=N1;m++){
+        scal=m*pi/L;
+        inte_Uncos=GL2(ubis,0.0,L,m);
+        
+        
+        somme_K=somme_K+inte_Uncos*m*cos(scal*x)/sinh(scal*H);
+        
+        }
+      somme_K=somme_K*2.0*pi/(L*L);
+      
+      //On calcule l'intégrale de Un(x)*(terme de gauche de k(x,t) ) de 0 à L
+      res=GL2(ubis,0.0,L,0);
+      res=res/(H*L);
+      
+      //On somme le tout et on divise par alpha
+      res= res+somme_K;
+      res=(h(x)-res)/alpha;
+      
+      
+    
+    //Ensuite on le somme à la somme des Un(x) 
+    somme_Un=somme_Un+res;
+    
+    
+    //On calcule les points pour utiliser Gauss Legendre à la prochaine itération
+    for (K=0;K<N;K++){
+      //On va décomposer l'intégrale de Un(x)*k(x,t) en deux morceaux
+      
+      res=0.0;
+      somme_K=0.0;
+      //On calcule l'intégrale de Un(x)*(le terme de droite de k(x,t) ) de 0 à L.
+      for (int m=1;m<=N1;m++){
+        scal=m*pi/L;
+        inte_Uncos=GL2(ubis,0.0,L,m);
+        
+        
+        somme_K=somme_K+inte_Uncos*m*cos(scal*((1.0+X[K])*L/2.0)/sinh(scal*H));
+        
+        }
+      somme_K=somme_K*2.0*pi/(L*L);
+      //On calcule l'intégrale de Un(x)*(terme de gauche de k(x,t) ) de 0 à L
+      res=GL2(ubis,0.0,L,0);
+      res=res/(H*L);
+      
+      //On somme le tout et on divise par alpha
+      res= res+somme_K;
+      u[K]=(h((1.0+X[K])*L/2.0)-res)/alpha;
+      }
+      
+    
+    //on rédéfinie notre liste intermédiare ubis
+    for(l=0;l<N;l++){
+      ubis[l]=u[l];
+      }
+  }
+    return somme_Un;  
+    }
   
     

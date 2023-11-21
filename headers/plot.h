@@ -5,5 +5,7 @@
   #include "constante.h"
   
   double plot_err_alpha_adov1(double alpha_deb,double alpha_fin, double pas,int n);
+  
+  double plot_err_alpha_approx_succesive(double (*f)(double),double alpha_deb,double alpha_fin, double pas,int n);
 #endif
 

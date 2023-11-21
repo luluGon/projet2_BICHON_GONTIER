@@ -8,12 +8,18 @@
 
 int main(){
   
-  int n=4;
-  double y;
-  double t;
-  t=Uex(0.2, H);
-  y=adomain_v1(h,0.2,10.0,n);
-  printf("%lf\n%lf\n",y,t);
+  int n=5;
+  double alpha_opti;
+  
+  double alpha_deb=0.1;
+  double alpha_fin=100.0;
+  double pas =0.05;
+  double f(double x){
+   return 0;}
+   
+  alpha_opti=plot_err_alpha_approx_succesive(f,alpha_deb, alpha_fin,pas,n);
+  
+  printf("%lf\n",alpha_opti);
   return 0;
   }
   
