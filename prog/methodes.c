@@ -104,8 +104,8 @@ double adomain_v1( double x,double alpha, int n){
   for (i=0;i<N;i++){
   
     //on oublie pas le changement de variable
-    u[i]=h((X[i]+1)*L/2.0);
-    ubis[i]=h((X[i]+1)*L/2.0);
+    u[i]=h((X[i]+1.0)*L/2.0);
+    ubis[i]=h((X[i]+1.0)*L/2.0);
     }
   
   //On va maintenant boucler sur le n pour calculer les Un Un
@@ -207,8 +207,8 @@ double approximation_succesive(double (*fonction_initial)(double), double x,doub
   for (i=0;i<N;i++){
   
     //on oublie pas le changement de variable
-    u[i]=fonction_initial((X[i]+1)*L/2.0);
-    ubis[i]=fonction_initial((X[i]+1)*L/2.0);
+    u[i]=fonction_initial((X[i]+1.0)*L/2.0);
+    ubis[i]=fonction_initial((X[i]+1.0)*L/2.0);
     }
   
   //On va maintenant boucler sur le n pour calculer les Un Un

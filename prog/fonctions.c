@@ -105,7 +105,7 @@ double h(double x){
     scal =pi*i/L;
     int2=integrale_GL(f0,0.0,L,i);
     
-    int2=(f0(x))*cosh(scal*H)*int2;
+    int2=cosh(scal*H)*int2;
     
     somme=somme +int2*i*cos(scal*x)/sinh(scal*H);
   }

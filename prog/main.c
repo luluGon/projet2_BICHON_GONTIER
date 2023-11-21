@@ -8,8 +8,8 @@
 
 int main(){
   
-  int n=5;
-  double alpha_opti;
+  int n=10;
+  double alpha_opti1, alpha_opti2;
   
   double alpha_deb=0.1;
   double alpha_fin=100.0;
@@ -17,9 +17,11 @@ int main(){
   double f(double x){
    return 0;}
    
-  alpha_opti=plot_err_alpha_approx_succesive(f,alpha_deb, alpha_fin,pas,n);
+  alpha_opti1=plot_err_alpha_approx_succesive(f,alpha_deb, alpha_fin,pas,n);
+  alpha_opti2=plot_err_alpha_adov1(alpha_deb, alpha_fin,pas,n);
   
-  printf("%lf\n",alpha_opti);
+  printf("%lf\n",alpha_opti2);
+  printf("%lf\n",alpha_opti1);
   return 0;
   }
   
