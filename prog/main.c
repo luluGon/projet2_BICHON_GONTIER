@@ -21,11 +21,11 @@ int main(){
   
   //alpha_opt_app_succ=plot_err_alpha_approx_succesive(f,1.0,3.0,0.0001,n);
   //printf("%lf\n",alpha_opt_app_succ);
-  t1=adomain_v1(0.0, alpha,n);
-  printf("%lf\n%lf\n", h(0.0)/alpha,t1);
+  //t1=adomain_v1(0.0, alpha,n);
+  //printf("%lf\n%lf\n", h(0.0)/alpha,t1);
 
   //plot_f3_app_succ(f, nx, n,alpha_opt_app_succ);
-  
+  precalcul_KUn(10);
   
   return 0;
   }
