@@ -18,7 +18,10 @@
     
     double adomain_v1( double x,double alpha, int n);
     
-    
+    void precalcul_KUn(int n);
+    double adomain_v1_2(double x, double Un[][10],double alpha, int n);
     double approximation_succesive(double (*fonction_initial)(double), double x,double alpha, int n);
+    
+    
 #endif
 
