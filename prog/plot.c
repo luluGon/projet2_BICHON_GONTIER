@@ -78,7 +78,7 @@ double plot_err_alpha_approx_succesive(double (*f)(double),double alpha_deb,doub
       }
   else {
   
-  //on va jusque alpha =10 par pas de 0.0001, cela nous permet une première approximation
+  
   while (alpha<=alpha_fin){
   
     //on fait l'erreur sur les f3 car, avec nos donnée initiales, celle ci est equivalente à celle sur T

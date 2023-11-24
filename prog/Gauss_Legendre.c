@@ -87,7 +87,6 @@ double GL2( double tab[N], double a, double b,int m){
   if (m==0){
   for (i=0;i<N;i++){
     
-      Xbis[i]=b_moins_a*X[i] + b_plus_a;
       
       res=res + w[i]*(tab[i]);
       }
@@ -101,7 +100,7 @@ double GL2( double tab[N], double a, double b,int m){
     for (i=0;i<N;i++){
     
       Xbis[i]=b_moins_a*X[i] + b_plus_a;
-      res=res + w[i]*(tab[i])*cos(scal*X[i]);
+      res=res + w[i]*(tab[i])*cos(scal*Xbis[i]);
       }
       } 
   res=res*(b_moins_a);
