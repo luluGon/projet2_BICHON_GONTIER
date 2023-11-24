@@ -2,6 +2,7 @@
 CC = gcc
 CFLAGS = -O2 
 LFLAGS = -lm
+LAPFLAGS = -llapacke
 
 # Directories
 SRC_DIR = prog
@@ -22,7 +23,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 
 # Création de l'exécutable
 $(EXECUTABLE): $(OBJS)
-	$(CC) $(CFLAGS) -o $@  $^ $(LFLAGS)
+	$(CC) $(CFLAGS) -o $@  $^ $(LFLAGS) $(LAPFLAGS)
 
 # Cibles pour nettoyer les fichiers objets et l'exécutable
 clean:

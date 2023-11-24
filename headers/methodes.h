@@ -11,7 +11,7 @@
     #include "OpérationsMatrices.h"
     #include <math.h>
     #include <stdio.h>
-    //#include <lapacke.h>
+    #include <lapacke.h>
 
     
     extern double X[10];

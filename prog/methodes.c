@@ -259,7 +259,8 @@ double adomain_v3( double x,double alpha, int n){
 double ker_sep(double (*h)(double), double x,double alpha){   
   double A[N1+1][N1+1];
   double B[N1+1];
-  double I[N1+1][N1+1];
+  //double c[N1+1];
+  double In[N1+1][N1+1];
   double lambda=-1./alpha;
   int i,m;
   //On construit f
@@ -277,10 +278,10 @@ double ker_sep(double (*h)(double), double x,double alpha){
         //On choisit m=0 car cela implique une multiplication de f_A par cos(0)=1
       //On initialise ensuite I
       if (m==i){
-        I[i-1][i-1]=1.;
+        In[i-1][i-1]=1.;
       }
       else{
-        I[m-1][i-1]=0.;
+        In[m-1][i-1]=0.;
       }
     }
     //On définit la fonction à placer dans l'intégrale pour calculer B
@@ -291,14 +292,22 @@ double ker_sep(double (*h)(double), double x,double alpha){
     //On choisit m=0 car cela implique une multiplication de f_B par cos(0)=1
   }
   //On fait intervenir un programme de multiplication de matrice par un scalaire qui renvoie le résultat dans A
-  mult_mat_scal(lambda,A);
+  //mult_mat_scal(lambda,A);
   //On fait intervenir un programme de soustraction de matrices qui renvoie le résultat dans A
-  sous_matrice(I,A);
+  //sous_matrice(In,A);
   //On fait intervenir notre programme d'inversion de matrice
-  inv_mat(A);
-  //On fait intervenir notre programme de produit matriciel qui renvoie le résultat dans B
-  prod_mat(A,B);
+  // Déclarer les matrices et les vecteurs
+  int IPIV[N1+1] = {0, 0};
+  lapack_int info = 0;
+
+  // Déclarer des variables pour stocker des informations supplémentaires
+  lapack_int n = N1+1; // Dimension de la matrice A
+  lapack_int nrhs = N1+1; // Nombre de colonnes de la matrice B
+
+  // Effectuer la factorisation LU et résoudre le système
+  info = LAPACKE_dgesv(LAPACK_ROW_MAJOR, n, nrhs, A, n, IPIV, B, n);
   //On définit la fonction u, solution du problème, à l'aide de ce que l'on a calculé précédemment
+  //printf("c= %lf\n",c);
   double u(double x){
     double som=0.;
     int m;

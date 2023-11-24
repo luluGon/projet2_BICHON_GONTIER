@@ -4,6 +4,7 @@
 #define constante
   
   #include <stdio.h>
+  #include <lapacke.h>
   #define pi 3.141592653589793 
   #define H 1.0 
   #define L 1.0
