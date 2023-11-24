@@ -15,7 +15,7 @@ int main(){
   y=plot_err_alpha_adov2(0.01,10.,0.01,n);
   printf("alpha_min pour adomainv2= %lf\n", y);
   
-  z=plot_err_alpha_ker_sep(0.01,10.,0.01);
+  z=plot_err_alpha_ker_sep(0.000001,0.001,0.000001);
   printf("alpha_min pour ker_sep= %lf\n", z);
   
   double A[2][2];
