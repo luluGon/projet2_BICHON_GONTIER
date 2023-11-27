@@ -1,6 +1,6 @@
 #include "Gauss_Legendre.h"
 
-
+//Poids de quadrature pour la méthode de Gauss-Legendre à 10 points
 double w[10]={
 0.2955242247147529,
 0.2955242247147529,
@@ -13,6 +13,7 @@ double w[10]={
 0.0666713443086881,
 0.0666713443086881};
 
+//Points de quadrature pour la méthode de Gauss-Legendre à 10 points
 double X[10]={
 -0.1488743389816312,
 0.1488743389816312,

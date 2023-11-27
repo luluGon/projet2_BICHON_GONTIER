@@ -59,8 +59,31 @@ double q0(double x){
   return res;
   }
 
+//Les fonctions alpha_i et beta_i sont les fonctions implicites de k(x,t) telles que k(x,t)=somme(i=1,n) alpha_i(x)beta_i(t)
+double alpha_i(double x,int i){
+  double alpha;
+  if (i==N1+1){           //On ajoute une itérations car il faut penser à inclure le terme 1/HL
+    alpha=1./(H*L);
+  }
+  else{
+    alpha=2.*pi*i*cos(i*pi*x*(1./L))*(1./(L*L*sinh(i*pi*H*(1./L))));
+  }
+  return alpha;
+}
 
-/*double kbis(double x, double t){
+double beta_i(double t, int i){
+  double beta;
+  if (i==N1+1){           //On ajoute une itérations car il faut penser à inclure le terme 1/HL
+    beta=1.;
+  }  
+  else{
+    beta=cos(i*pi*t*(1/L));
+  }
+  return beta;
+}
+
+//represente la fonction K(x,t)
+double K(double x, double t){
   double somme;
   double scal;
   double res;
@@ -80,8 +103,8 @@ double q0(double x){
   res=res +somme;
   
   return res;
-  }*/
-
+  }
+  
 double h(double x){
   /*On décompose le calcul de h en sous éléments, int1 la première intégrale, int2 la seconde, somme la somme*/
   /*De plus on pose res pour le résultat global, et scal pour les scalaires récurrent des boucles */
