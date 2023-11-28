@@ -3,7 +3,7 @@ reset
 set terminal png
 
 unset key
-set output 'images/T_err_alpha_adov1.png'
+set output 'images/T_err_alpha_adov2.png'
 
 # Style du tracé, ici courbe bleu
 set style line 1 lc rgb '#0074D9' lt 1 lw 2

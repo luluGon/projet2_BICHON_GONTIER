@@ -76,7 +76,7 @@ int main(){
   printf("alpha = %lf \net vaut : %lf\n", alpha_opt_adov1,ado1_err_min );
   */
   
-  /*
+  
   //ALPHA OPTIMAL POUR ADOMAIN V2 ET TRACÉ DE F3
   
   
@@ -85,11 +85,14 @@ int main(){
   ado2_err_min = L2_err_f3_adov2(alpha_opt_adov2 , n_adov2);
   
   
+  //on en profite pour tracer la courbe de f3 pour approximations succesives
+  plot_f3_adov2(nx,n_adov2,alpha_opt_adov2);
+  
   printf("Dans la seconde version de la méthode de Adomain.\n");
   printf("Pour n = %d, avec un pas selon alpha de : %lf\n",n_adov2,pas_alpha_adov2);
   printf("L'erreur en norme L2 de f3-Uex(.,H) est minimal pour :\n");
   printf("alpha = %lf \net vaut : %lf\n", alpha_opt_adov2,ado2_err_min );
-  */
+  
   
   
   /*

@@ -150,7 +150,7 @@ double adomain_v2(double x, double alpha, int n){
   for (int i=1; i<=n;i++){
     somme+=pow(lambda,n)*U_n(x,i);
     }
-  res=lambda*(somme+h(x)); 
+  res=lambda*(somme-h(x)); 
   return res; 
   }
 
