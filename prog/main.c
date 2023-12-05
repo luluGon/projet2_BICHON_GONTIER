@@ -48,10 +48,10 @@ double pas_alpha_ker_sep=0.00000001;
 double ker_sep_err_min;
 
 int main(){
-  /*
+  
   //TRACÉ DE LA SOLUTION EXACTE
   plot_f3ex(nx);
-  */
+  
   
   /*
   //COMPARAISON TEMPS ADOMAIN V1 ET ADOMAIN V2
@@ -60,7 +60,7 @@ int main(){
   //adomain_v2(0.2, 1., 7);
   */
   
-  /*
+  
   //ALPHA OPTIMAL POUR ADOMAIN V1 ET TRACÉ DE F3
     
   //on calcule le alpha optimal et son erreur associé
@@ -74,7 +74,7 @@ int main(){
   printf("Pour n = %d, avec un pas selon alpha de : %lf\n",n_adov1,pas_alpha_adov1);
   printf("L'erreur en norme L2 de f3-Uex(.,H) est minimal pour :\n");
   printf("alpha = %lf \net vaut : %lf\n", alpha_opt_adov1,ado1_err_min );
-  */
+  
   
   
   //ALPHA OPTIMAL POUR ADOMAIN V2 ET TRACÉ DE F3
@@ -95,7 +95,7 @@ int main(){
   
   
   
-  /*
+  
   //ALPHA OPTIMAL POUR APPROXIMATIONS SUCCESIVES ET TRACÉ DE F3
   
   
@@ -113,9 +113,9 @@ int main(){
   printf("Pour n = %d, avec un pas selon alpha de : %lf\n",n_AS,pas_alpha_AS);
   printf("L'erreur en norme L2 de f3-Uex(.,H) est minimal pour :\n");
   printf("alpha = %lf \net vaut : %lf\n", alpha_opt_AS,AS_err_min );
-  */
   
-  /*
+  
+  
   //ALPHA OPTIMAL POUR NOYAUX SÉPARÉS ET TRACÉ DE F3
   
   //on calcule le alpha optimal et son erreur associé
@@ -129,35 +129,35 @@ int main(){
   printf("Pour un pas selon alpha de : %.8lf\n",pas_alpha_ker_sep);
   printf("L'erreur en norme L2 de f3-Uex(.,H) est minimal pour :\n");
   printf("alpha = %.8lf \net vaut : %.8lf\n", alpha_opt_ker_sep,ker_sep_err_min);
-  */
+  
   
   //
   //TRACÉ DES T(X,Y)
   //
   
-  /*
+  
   //TRACÉ DE T(X,Y) PAR LA MÉTHODE D'ADOMAIN 1, AVEC SON ALPHA OPTIMAL PRÉCALCULÉ
-  alpha_opt_adov1=7.449000 
+  alpha_opt_adov1=7.449000;
   plot_Tout_ado1(nx,ny,alpha_opt_adov1,n_adov1);
-  */
   
-  /*
+  
+  
   //TRACÉ DE T(X,Y) PAR LA MÉTHODE D'ADOMAIN 2, AVEC SON ALPHA OPTIMAL PRÉCALCULÉ
-  alpha_opt_adov2=10.;
+  alpha_opt_adov2=0.27;
   plot_Tout_ado2(nx,ny,alpha_opt_adov2,n_adov2);
-  */
   
-  /*
+  
+  
   //TRACÉ DE T(X,Y) PAR LA MÉTHODE D'APPROXIMATION SUCCESIVES, AVEC SON ALPHA OPTIMAL PRÉCALCULÉ
   alpha_opt_AS=0.516000;
   plot_Tout_AS(nx,ny,f,alpha_opt_AS,n_AS);
-  */
   
-  /*
+  
+  
   //TRACÉ DE T(X,Y) PAR LA MÉTHODE DE NOYAUX SÉPARABLES, AVEC SON ALPHA OPTIMAL PRÉCALCULÉ
   alpha_opt_ker_sep=0.00000104;
   plot_Tout_KS(nx,ny,alpha_opt_ker_sep);
-  */
+  
   
   
   //
@@ -166,8 +166,11 @@ int main(){
   alpha_opt_ker_sep=0.00000104;
   plot_frontiere_app_KS(nx ,alpha_opt_ker_sep, "dat/frontiere_alpha_opt.dat");
   
+  
+  
   //TRACER DE LA FRONTIERE EXACTE
   plot_frontiere_ex(nx);
+  
   
   return 0;
 }
