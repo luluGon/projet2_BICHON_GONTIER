@@ -1,6 +1,8 @@
 # Projet2 BICHON Pierre & GONTIER Lucien
 
 Ce projet a été réalisé par la collaboration de Pierre Bichon et Lucien Gontier.
+$ \rho_0(x) = \left{\begin{cases} 0 & \text{si } x < 1 \ 1 & \text{si } 1 < x < 2 \ \end{cases}\right . $
+
 
 Il s'inscrit dans le cadre du cours de calcul scientifique numérique du Master 2 Modélisation, Analyse numérique et Calcul Scientifique de Nantes université.
 
